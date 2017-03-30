@@ -52,7 +52,7 @@ class AWSLambda {
     // @param {table} params               - table with parameters:
     //
     //        @param {string} functionName       - function name to be called
-    //        @param {table} argsPayload         - function arguments
+    //        @param {table} invokeArgs          - function arguments
     //        @param {string} contentType        - the content type of the function
     //                                             arguments to be transfered.
     //                                             If not provided, "application/json"
@@ -63,14 +63,14 @@ class AWSLambda {
     // Returns: Lambda object created
     function invoke(params, callback = null) {
         local contentType = "contentType" in params && params["contentType"]
-                            ? strip(params["contentType"].toLower())
+                            ? strip(params["contentType"].tolower())
                             : AWS_LAMBDA_APPJSON_CONTENT_TYPE;
         local headers = {
             "Content-Type": contentType
         };
         local body = contentType == AWS_LAMBDA_APPJSON_CONTENT_TYPE
-                     ? http.jsonencode(params.argsPayload)
-                     : argsPayload;
+                     ? http.jsonencode(params.invokeArgs)
+                     : params.invokeArgs;
         _awsRequest.post(AWS_LAMBDA_URL_PREFIX + params.functionName + "/invocations", headers, body, callback);
     }
 }
