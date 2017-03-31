@@ -1,7 +1,0 @@
-.DS_Store
-*.wrench
-*.out
-.build_api_key.json
-*.swp
-test*
-src/vars.nut

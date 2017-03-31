@@ -32,7 +32,7 @@ class AWSLambda {
 
 	_awsRequest = null;
 
-    // Lambda object constructor
+    // AWSLambda object constructor
     //
     // @param {string} region               - AWS region (e.g. "us-east-1")
     // @param {string} accessKeyId          - IAM Access Key ID
@@ -49,16 +49,12 @@ class AWSLambda {
 
     // Invokes lambda function
     //
-    // @param {table} params               - table with parameters:
-    //
-    //        @param {string} functionName       - function name to be called
-    //        @param {table} invokeArgs          - function arguments
-    //        @param {string} contentType        - the content type of the function
-    //                                             arguments to be transfered.
-    //                                             If not provided, "application/json"
-    //                                             is used.
-    //
-    // @param {function} callback          - IAM Access Key ID
+    // @param {table} params                - table with parameters:
+    //        @param {string} functionName       - Name of the function to be called
+    //        @param {table}  payload            - JSON that you want to provide to your Lambda function as input
+    //        @param {string} contentType        - The content type of the function arguments to be transfered.
+    //                                             If not provided, "application/json" is used.
+    // @param {function} callback           - Callback function that takes one parameter ()
     //
     // Returns: Lambda object created
     function invoke(params, callback = null) {
@@ -69,8 +65,8 @@ class AWSLambda {
             "Content-Type": contentType
         };
         local body = contentType == AWS_LAMBDA_APPJSON_CONTENT_TYPE
-                     ? http.jsonencode(params.invokeArgs)
-                     : params.invokeArgs;
+                     ? http.jsonencode(params.payload)
+                     : params.payload;
         _awsRequest.post(AWS_LAMBDA_URL_PREFIX + params.functionName + "/invocations", headers, body, callback);
     }
 }
