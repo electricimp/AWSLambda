@@ -1,8 +1,7 @@
-# Demo Instructions
+# Test Instructions
 
-This example shows who to create a simple Lambda function that will echo back what you transmit to it.
+The instructions will show you how to set up the tests for AWS Lambda.
 
-As the sample code includes the private key verbatim in the source, it should be treated carefully, and not checked into version control!
 
 ## Setting up a Lambda
 
@@ -19,18 +18,7 @@ As the sample code includes the private key verbatim in the source, it should be
     1. Set "Role name" to "role_with_no_permissions"
     1. Leave "Policy templates" empty
     1. "Next"
-
-
-## Configure the API keys for Lambda
-
-At the top of the AWSLambda.test.nut there are three constants to configure.
-
-Parameter             | Description
-----------------------| -----------
-AWS_LAMBDA_REGION     | AWS region (e.g. "us-east-1")
-ACCESS_KEY_ID         | IAM Access Key ID
-SECRET_ACCESS_KEY     | IAM Secret Access Key
-
-# License
+1. Click "Function" and repeat from step 2, this time with "mySendReceive"
+1. Please Ensure that you enter your aws keys at the top of the agent.test.nut
 
 The AWSLambda library is licensed under the [MIT License](../LICENSE).
