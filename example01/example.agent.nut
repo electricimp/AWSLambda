@@ -23,8 +23,7 @@
 // OTHER DEALINGS IN THE SOFTWARE.
 
 #require "AWSRequestV4.class.nut:1.0.2"
-// #require "AWSLambda.class.nut:1.0.0"
-#include "../AWSLambda.class.nut"
+#require "AWSLambda.class.nut:1.0.0"
 
 // Read the README.md file for information on setting up an appropriate lambda function.
 
