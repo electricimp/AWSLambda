@@ -23,7 +23,7 @@ As the sample code includes the private key verbatim in the source, it should be
 
 ## Configure the API keys for Lambda
 
-At the top of the AWSLambda.test.nut there are three constants to configure.
+At the top of the agent [code](agent.nut) there are three constants to configure.
 
 Parameter             | Description
 ----------------------| -----------
@@ -33,4 +33,4 @@ SECRET_ACCESS_KEY     | IAM Secret Access Key
 
 # License
 
-The AWSLambda library is licensed under the [MIT License](../LICENSE).
+The AWSLambda library is licensed under the [MIT License](../../LICENSE).

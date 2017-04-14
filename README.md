@@ -44,8 +44,8 @@ The function takes the following parameters:
 
  Parameter         | Type           | Description
 ------------------ | -------------- | -----------
-params             | table          | Table of parameters (See API Reference)
-callback           | function       | Callback function that takes one parameter ([response table](https://electricimp.com/docs/api/httprequest/sendasync/))
+params             | table          | Table of parameters
+callback           | function       | Callback function that takes one parameter - [httpresponse](https://electricimp.com/docs/api/httpresponse/))
 
 where `params` include:
 
@@ -63,7 +63,7 @@ local payload = { "message" : "Hello, world!" };
 local params  = { "payload" : payload, "functionName" : "mySend" };
 lambda.invoke(params, function (result) {
     local payload = http.jsondecode(result.body);
-    if ("Message" in payload) {
+    if ("message" in payload) {
         server.error(payload.Message);
     } else {
         server.log("[SUCCESS]: " + payload.transmit);
