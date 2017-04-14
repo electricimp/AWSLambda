@@ -31,7 +31,7 @@ const privateKey = `
 
 exports.handler = (event, context, callback) => {
   try {
-    var message = new Buffer(event, 'base64');
+    var message = new Buffer(event);
     var sign = crypto.createSign('RSA-SHA256');
     sign.update(message);
     callback(null, {
