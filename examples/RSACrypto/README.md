@@ -4,6 +4,8 @@ This example shows who to create a Lambda that will do RSA-SHA256 signatures for
 
 ## Generate Keys
 
+Below is the example commands for private and public keys generation on a Linux box:
+
 ```
 $ openssl genrsa -out privkey.pem 2048
 Generating RSA private key, 2048 bit long modulus
@@ -14,25 +16,36 @@ $ openssl rsa -pubout <privkey.pem >pubkey.pem
 writing RSA key
 ```
 
-## Sample Node.js Code
+The public key is going to be stored in `private.pem` file, the public key - in `pubkey.pem`.
 
-The sample Node.js code can be found [here](RSALambda.js). Copy and paste the full private key text between the lines:
+## Preparing the Sample Node.js Code
+
+The sample Node.js code can be found [here](RSALambda.js). Copy and paste the full private key text between the lines `-----BEGIN RSA PRIVATE KEY-----` and `-----END RSA PRIVATE KEY-----`. Plese note that the line structure from the original `privkey.pem` file should be preserved, ei. you shouldn't join the lines, for example:
 
 ```
 -----BEGIN RSA PRIVATE KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAtjdR7z8l1/Z8oSOn/RNb
+qKc9f5/zsL17CHZ/fBDsS6WMLTblm0H5Kh1SAE2nFL2cpw3VlHeKHu+fvebl79sz
+7fmaXpB6gmzq3i7u6iQzaUSkn9nEklo/1voZhX8fwlPQ7st6X4y//PG69RoFHzR0
+IV9EUfLdAI/CC9qEhjf5x8Zg1PXOx/WXlXYHvTmOibMhGF6MlV9PDLYrank2iASE
+afzDVvc4RwT0JUTN1dRoOAB9js298E5Jggd8zDnpsmarrFj/rEksyBdhLl8PHRoy
+GhsSFmIxNsEmbog00bcI3x1cW15b1VzuYMM2NzDEa9N12mN3Jkq2RNlg56qGTxEL
+hwIDAQAB
 -----END RSA PRIVATE KEY-----
+
+// Rest of the lambda function
 ```
 
-As the sample code includes the private key verbatim in the source, it should be treated carefully, and not checked into version control!
+**NOTE**: As the sample code includes the private key verbatim in the source, it should be treated carefully, and not checked into version control!
 
 ## Setting up a Lambda
 
 1. Go to the AWS Lambda console.
-1. “Create a Lambda function”
-1. “Select blueprint” – “Blank function”
-1. “Configure function”:
-    1. Give function a name “sign”
-    1. Select runtime “Node.js 4.3”
+1. Select `Create a Lambda function`
+1. Under the `Select blueprint` choose `Blank function`
+1. Select `Configure function`:
+    1. Give function a name `RSAsign`
+    1. Select runtime `Node.js 4.3`
     1. Paste in code from above.
     1. Leave “Handler” as default (“index.handler”)
     1. Set “Role” to “Create new role from template(s)”
