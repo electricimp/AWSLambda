@@ -54,7 +54,7 @@ class AWSLambdaTestCase extends ImpTestCase {
             lambda.invoke(params, function(result) {
                 try {
                     local payload = http.jsondecode(result.body);
-                    local err = ("Message" in payload) ? payload.Message : null;
+                    local err = ("errorMessage" in payload) ? payload.errorMessage : null;
                     this.assertTrue(err != null, "Error response was expected");
                     resolve();
                 } catch (e) {
@@ -94,7 +94,7 @@ class AWSLambdaTestCase extends ImpTestCase {
             lambda.invoke(params, function(result) {
                 try {
                     local payload = http.jsondecode(result.body);
-                    local err = ("Message" in payload) ? payload.Message : null;
+                    local err = ("errorMessage" in payload) ? payload.errorMessage : null;
                     this.assertTrue(err == null, err);
                     this.assertTrue(payload.transmit == TEST_SENDRECEIVE_MESSAGE, "The payload is: " + payload);
                     resolve();
