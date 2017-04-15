@@ -23,7 +23,7 @@
 // OTHER DEALINGS IN THE SOFTWARE.
 
 #require "AWSRequestV4.class.nut:1.0.2"
-#require "AWSLambda.class.nut:1.0.0"
+#require "AWSLambda.agent.lib.nut:1.0.0"
 
 const AWS_LAMBDA_REGION = "us-west-1"
 const ACCESS_KEY_ID     = "YOUR_ACCES_KEY_ID";
