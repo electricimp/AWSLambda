@@ -16,11 +16,8 @@ class AWSLambdaTestCase extends ImpTestCase {
     lambda = null;
 
     function setUp() {
-
         lambda = AWSLambda(AWS_LAMBDA_REGION, ACCESS_KEY_ID, SECRET_ACCESS_KEY);
-
     }
-
 
     // test that the lambda library is capable of handling error messages
     function testBadFunction() {
@@ -42,7 +39,6 @@ class AWSLambdaTestCase extends ImpTestCase {
         }.bindenv(this));
     }
 
-
     // tests that the lambda library is capable of receiving a payload from aws
     function testReceive() {
         return Promise(function(resolve, reject) {
@@ -61,7 +57,6 @@ class AWSLambdaTestCase extends ImpTestCase {
             }.bindenv(this));
         }.bindenv(this));
     }
-
 
     // test that the lambda library is capable of sending a payload from aws
     function testSendReceive() {
@@ -84,5 +79,4 @@ class AWSLambdaTestCase extends ImpTestCase {
             }.bindenv(this));
         }.bindenv(this));
     }
-
 }
