@@ -63,8 +63,10 @@ local payload = { "message" : "Hello, world!" };
 local params  = { "payload" : payload, "functionName" : "MyLambdaFunction" };
 lambda.invoke(params, function (result) {
     local payload = http.jsondecode(result.body);
-    if ("errorMessage" in payload) {
-        server.error(payload.errorMessage);
+    if ("Message" in payload) {
+        server.log("Invocation error: " + payload.Message);
+    } else if ("errorMessage" in payload) {
+        server.log("Runtime error: " + payload.errorMessage);
     } else {
         server.log("[SUCCESS]: " + payload.result);
     }

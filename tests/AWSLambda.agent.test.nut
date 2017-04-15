@@ -54,7 +54,8 @@ class AWSLambdaTestCase extends ImpTestCase {
             lambda.invoke(params, function(result) {
                 try {
                     local payload = http.jsondecode(result.body);
-                    local err = ("errorMessage" in payload) ? payload.errorMessage : null;
+                    local err = ("errorMessage" in payload)    ? payload.errorMessage : null;
+                    local err = (!err && "Message" in payload) ? payload.Message      : err;
                     this.assertTrue(err != null, "Error response was expected");
                     resolve();
                 } catch (e) {
