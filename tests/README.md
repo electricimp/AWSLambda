@@ -2,7 +2,6 @@
 
 The instructions will show you how to set up the tests for AWS Lambda.
 
-
 ## Setting up a Lambda
 
 1. Go to the AWS Lambda console.
