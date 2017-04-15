@@ -60,13 +60,13 @@ contentType           | string            | no       | "application/json" | The 
 
 ```squirrel
 local payload = { "message" : "Hello, world!" };
-local params  = { "payload" : payload, "functionName" : "mySend" };
+local params  = { "payload" : payload, "functionName" : "MyLambdaFunction" };
 lambda.invoke(params, function (result) {
     local payload = http.jsondecode(result.body);
-    if ("message" in payload) {
-        server.error(payload.Message);
+    if ("errorMessage" in payload) {
+        server.error(payload.errorMessage);
     } else {
-        server.log("[SUCCESS]: " + payload.transmit);
+        server.log("[SUCCESS]: " + payload.result);
     }
 }.bindenv(this))
 ```
