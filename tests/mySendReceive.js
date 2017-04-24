@@ -1,6 +1,7 @@
 // MIT License
 //
 // Copyright 2017 Electric Imp
+// Copyright 2017 Mystic Pants Pty Ltd
 //
 // SPDX-License-Identifier: MIT
 //
@@ -22,26 +23,6 @@
 // ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 // OTHER DEALINGS IN THE SOFTWARE.
 
-#require "AWSRequestV4.class.nut:1.0.2"
-#require "AWSLambda.class.nut:1.0.0"
-
-const AWS_LAMBDA_REGION = "us-west-1"
-const ACCESS_KEY_ID     = "YOUR_ACCES_KEY_ID";
-const SECRET_ACCESS_KEY = "YOUR_SECRET_ACCESS_KEY";
-
-local lambda = AWSLambda(AWS_LAMBDA_REGION, ACCESS_KEY_ID, SECRET_ACCESS_KEY);
-local body   = {"message" : "hello world!"};
-local params = {
-    "payload"      : http.jsonencode(body),
-    "functionName" : "RSALambda"
-}
-
-function callback(result) {
-    local payload = http.jsondecode(result.body);
-    if ("errorMessage" in payload) {
-        server.log("[ERROR] " + payload.errorMessage);
-    } else {
-        server.log("[SUCCEDED] base64encoded signature: " + payload.signature);
-    }
-}
-lambda.invoke(params, callback);
+exports.handler = (event, context, callback) => {
+    callback(null, event);
+};

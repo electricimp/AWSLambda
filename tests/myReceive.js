@@ -1,6 +1,7 @@
 // MIT License
 //
 // Copyright 2017 Electric Imp
+// Copyright 2017 Mystic Pants Pty Ltd
 //
 // SPDX-License-Identifier: MIT
 //
@@ -22,22 +23,6 @@
 // ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 // OTHER DEALINGS IN THE SOFTWARE.
 
-const crypto = require('crypto');
-
-const privateKey = `
------BEGIN RSA PRIVATE KEY-----
------END RSA PRIVATE KEY-----
-`;
-
 exports.handler = (event, context, callback) => {
-  try {
-    var message = new Buffer(event);
-    var sign = crypto.createSign('RSA-SHA256');
-    sign.update(message);
-    callback(null, {
-        signature: sign.sign(privateKey, 'base64')
-    });
-  } catch (e) {
-    callback("Bad Request: " + e);
-  }
+    callback(null, 'Hello, world!');
 };

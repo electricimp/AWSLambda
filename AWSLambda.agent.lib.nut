@@ -1,6 +1,7 @@
 // MIT License
 //
 // Copyright 2017 Electric Imp
+// Copyright 2017 Mystic Pants Pty Ltd
 //
 // SPDX-License-Identifier: MIT
 //
@@ -39,13 +40,13 @@ class AWSLambda {
     // @param {string} secretAccessKey      - IAM Secret Access Key
     //
     // Returns: Lambda object created
-	constructor(region, accessKeyId, secretAccessKey) {
-		if ("AWSRequestV4" in getroottable()) {
-			_awsRequest = AWSRequestV4(AWS_LAMBDA_SERVICE, region, accessKeyId, secretAccessKey);
-		} else {
-			throw("This class requires AWSRequestV4 - please make sure it is included");
-		}
-	}
+    constructor(region, accessKeyId, secretAccessKey) {
+        if ("AWSRequestV4" in getroottable()) {
+            _awsRequest = AWSRequestV4(AWS_LAMBDA_SERVICE, region, accessKeyId, secretAccessKey);
+        } else {
+            throw("This class requires AWSRequestV4 - please make sure it is included");
+        }
+    }
 
     // Invokes lambda function
     //
