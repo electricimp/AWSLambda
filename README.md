@@ -23,6 +23,8 @@ The AWSLambda object constructor takes the following parameters:
 | *accessKeyID* | String | IAM Access Key ID |
 | *secretAccessKey* | String | IAM Secret Access Key |
 
+See the [RSACrypto example](/examples/RSACrypto#setting-up-the-aim-user) for instructions on setting up AIM user, and retrieving IAM Access Key ID and IAM Secret Access Key.
+
 #### Example
 
 ```squirrel
