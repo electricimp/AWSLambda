@@ -1,6 +1,6 @@
 # AWSLambda
 
-This library can be used to invoke [Amazon Web Services (AWS) Lambda](http://docs.aws.amazon.com/lambda) functions from your agent code.
+This library can be used to invoke [Amazon Web Services (AWS) Lambda](http://docs.aws.amazon.com/lambda) functions from your agent code. It depends upon the [AWSRequestV4](https://github.com/electricimp/AWSRequestV4/) library, which **must** be included.
 
 **To add this library to your code, add**
 
@@ -10,8 +10,6 @@ This library can be used to invoke [Amazon Web Services (AWS) Lambda](http://doc
 ```
 
 **to the top of your agent code**
-
-**Note** [AWSRequestV4](https://github.com/electricimp/AWSRequestV4/) must be included.
 
 ## Class Methods
 
