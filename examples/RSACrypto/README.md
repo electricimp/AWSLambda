@@ -1,9 +1,9 @@
 # Demo Instructions
 
-This example shows who to create a Lambda that will do RSA-SHA256 signatures for an agent.
+This example shows how to create a Lambda that will do RSA-SHA256 signatures for an agent.
 
-**NOTE**: Even though the example shows a specific use case for RSA-SHA256 encryption, 
-the steps for setting up Lambda, IAM Policy and IAM User described here are generic and 
+**NOTE**: Even though the example shows a specific use case for RSA-SHA256 encryption,
+the steps for setting up Lambda, IAM Policy and IAM User described here are generic and
 applicable to any other use case and Lambda implementation.
 
 ## Generate Keys
@@ -26,18 +26,18 @@ The public key is going to be stored in `private.pem` file, the public key - in 
 
 ## Preparing the Sample Node.js Code
 
-The sample Node.js code can be found [here](RSALambda.js). Copy in paste the full text of the 
-Lambda code into a text editor.  Insert the full private key text taken from `private.pem` 
-between the lines: 
+The sample Node.js code can be found [here](RSALambda.js). Copy in paste the full text of the
+Lambda code into a text editor.  Insert the full private key text taken from `private.pem`
+between the lines:
 
 ```
 -----BEGIN RSA PRIVATE KEY-----
-``` 
-and 
+```
+and
 ```
 -----END RSA PRIVATE KEY-----
 ```
-Please note that the line structure from the original `privkey.pem` file should be preserved, e.i. 
+Please note that the line structure from the original `privkey.pem` file should be preserved, e.i.
 you shouldn't join multiple lines into one. The private key in the Lambda code should look like:
 
 ```
@@ -54,7 +54,7 @@ hwIDAQAB
 // Rest of the lambda code goes here
 ```
 
-**NOTE**: As the sample code includes the private key verbatim in the source, 
+**NOTE**: As the sample code includes the private key verbatim in the source,
 it should be treated carefully, and not checked into version control!
 
 ## Setting up a Lambda
@@ -73,10 +73,10 @@ it should be treated carefully, and not checked into version control!
     1. Leave `Policy templates` empty
     1. `Next`
 1. Press `Create function`
-1. On the Lambda page copy and copy down Lambda's **ARN**. It can be found at the top right corner 
+1. On the Lambda page copy and copy down Lambda's **ARN**. It can be found at the top right corner
 of the page and should look like: `arn:aws:lambda:us-west-1:123456789101:function:RSALambda`
-1. Copy down the Lambda region. It can be found on the top right corner of the page, 
-and is a next item to the right of the link with the user name (e.g. "us-east-1") 
+1. Copy down the Lambda region. It can be found on the top right corner of the page,
+and is a next item to the right of the link with the user name (e.g. "us-east-1")
 
 
 ## Setting up AIM Policy
