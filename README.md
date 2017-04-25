@@ -75,6 +75,6 @@ lambda.invoke(params, function (result) {
 }.bindenv(this))
 ```
 
-# License
+## License
 
 The AWSLambda library is licensed under the [MIT License](LICENSE).
