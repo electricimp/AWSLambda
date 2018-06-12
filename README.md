@@ -1,31 +1,31 @@
-# AWSLambda
+# AWSLambda #
 
 The helper library to invoke [AWS Lambda](http://docs.aws.amazon.com/lambda) functions from agent code.
 
-To add this library to your model, add the following lines to the top of your agent code:
+**To add this library to your model, add the following lines to the top of your agent code:**
 
 ```
 #require "AWSRequestV4.class.nut:1.0.2"
 #require "AWSLambda.agent.lib.nut:1.0.0"
 ```
 
-**Note: [AWSRequestV4](https://github.com/electricimp/AWSRequestV4/) must be included.**
+**Note** [AWSRequestV4](https://github.com/electricimp/AWSRequestV4/) **must** be included.
 
-## Class Methods
+## Class Methods ##
 
-### constructor(region, accessKeyId, secretAccessKey)
-
-AWSLambda object constructor takes the following parameters:
+### Constructor: AWSLambda(*region, accessKeyId, secretAccessKey*) ###
+ 
+#### Parameters ####
 
  Parameter             | Type           | Description
 ---------------------- | -------------- | -----------
-region                 | string         | AWS region (e.g. "us-east-1")
-accessKeyId            | string         | IAM Access Key ID
-secretAccessKey        | string         | IAM Secret Access Key
+*region*                 | string         | AWS region (e.g. `"us-east-1"`)
+*accessKeyId*            | string         | IAM Access Key ID
+*secretAccessKey*        | string         | IAM Secret Access Key
 
 See the [RSACrypto example](/examples/RSACrypto#setting-up-the-aim-user) for instructions on setting up AIM user, and retrieving IAM Access Key ID and IAM Secret Access Key.
 
-#### Example
+#### Example ####
 
 ```squirrel
 #require "AWSRequestV4.class.nut:1.0.2"
@@ -38,43 +38,44 @@ const SECRET_ACCESS_KEY = "YOUR_SECRET_ACCESS_KEY";
 lambda <- AWSLambda(AWS_LAMBDA_REGION, ACCESS_KEY_ID, SECRET_ACCESS_KEY);
 ```
 
-### invoke(params, callback = null)
+## Class Methods ##
+
+### invoke(*params[, callback]*) ###
 
 Invokes lambda function. Please refer to the AWS Lambda [documentation](http://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html) for more details.
 
-The function takes the following parameters:
+#### Parameters ####
 
  Parameter         | Type           | Description
 ------------------ | -------------- | -----------
-params             | table          | Table of parameters
-callback           | function       | Callback function that takes one parameter - [httpresponse](https://electricimp.com/docs/api/httpresponse/))
+*params*             | table          | Table of parameters
+*callback*           | function       | Callback function that takes one parameter - [httpresponse](https://developer.electricimp.com/api/httpresponse))
 
-where `params` include:
+where *params* include:
 
 Parameter             | Type              | Required | Default Value      | Description
 --------------------- | ----------------- | -------- | ------------------ | ------------
-functionName          | string            | yes      | N/A                | Name of the Lambda function to be called
-payload               | serializable data | yes      | N/A                | Data that you want to provide to your Lambda
-contentType           | string            | no       | "application/json" | The payload content type
+*functionName*          | string            | yes      | N/A                | Name of the Lambda function to be called
+*payload*              | serializable data | yes      | N/A                | Data that you want to provide to your Lambda
+*contentType*           | string            | no       | "application/json" | The payload content type
 
-
-#### Example
+#### Example ####
 
 ```squirrel
 local payload = { "message" : "Hello, world!" };
 local params  = { "payload" : payload, "functionName" : "MyLambdaFunction" };
 lambda.invoke(params, function (result) {
-    local payload = http.jsondecode(result.body);
-    if ("Message" in payload) {
-        server.log("Invocation error: " + payload.Message);
-    } else if ("errorMessage" in payload) {
-        server.log("Runtime error: " + payload.errorMessage);
-    } else {
-        server.log("[SUCCESS]: " + payload.result);
-    }
+  local payload = http.jsondecode(result.body);
+  if ("Message" in payload) {
+    server.log("Invocation error: " + payload.Message);
+  } else if ("errorMessage" in payload) {
+    server.log("Runtime error: " + payload.errorMessage);
+  } else {
+    server.log("[SUCCESS]: " + payload.result);
+  }
 }.bindenv(this))
 ```
 
-# License
+## License ##
 
 The AWSLambda library is licensed under the [MIT License](LICENSE).
