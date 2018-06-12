@@ -1,4 +1,4 @@
-# AWSLambda
+# AWSLambda #
 
 This library can be used to invoke [Amazon Web Services (AWS) Lambda](http://docs.aws.amazon.com/lambda) functions from your agent code. It depends upon the [AWSRequestV4](https://github.com/electricimp/AWSRequestV4/) library, which **must** be included.
 
@@ -11,11 +11,11 @@ This library can be used to invoke [Amazon Web Services (AWS) Lambda](http://doc
 
 **to the top of your agent code**
 
-## Class Methods
+## Class Methods ##
 
-### Constructor(*region, accessKeyID, secretAccessKey*)
+### Constructor(*region, accessKeyID, secretAccessKey*) ###
 
-The AWSLambda object constructor takes the following parameters:
+#### Parameters ####
 
 | Parameter | Type | Description |
 | --- | --- | --- |
@@ -25,7 +25,7 @@ The AWSLambda object constructor takes the following parameters:
 
 See the [RSACrypto example](/examples/RSACrypto#setting-up-the-aim-user) for instructions on setting up AIM user, and retrieving IAM Access Key ID and IAM Secret Access Key.
 
-#### Example
+#### Example ####
 
 ```squirrel
 #require "AWSLambda.agent.lib.nut:1.0.0"
@@ -38,16 +38,16 @@ const SECRET_ACCESS_KEY = "<YOUR_SECRET_ACCESS_KEY>";
 lambda <- AWSLambda(AWS_LAMBDA_REGION, ACCESS_KEY_ID, SECRET_ACCESS_KEY);
 ```
 
-### invoke(*params[, callback]*)
+### invoke(*params[, callback]*) ###
 
 This method invokes a lambda function. Please refer to the AWS Lambda [documentation](http://docs.aws.amazon.com/lambda/latest/dg/API_Invoke.html) for more details.
 
-The function takes the following parameters:
+#### Parameters ####
 
 | Parameter  | Type     | Description |
 | ---------- | -------- | ----------- |
 | *params*   | Table    | Table of parameters, see below |
-| *callback* | Function | Callback function that takes one parameter: an [**httpresponse**](https://electricimp.com/docs/api/httpresponse/) object |
+| *callback* | Function | Callback function that takes one parameter: an [**httpresponse**](https://developer.electricimp.com/api/httpresponse) object |
 
 The *params* table can contain the following keys:
 
@@ -57,24 +57,24 @@ The *params* table can contain the following keys:
 | *payload*      | Serializable data | Yes      | N/A                  | Data that you want to provide to your Lambda |
 | *contentType*  | String            | No       | `"application/json"` | The payload content type |
 
-#### Example
+#### Example ####
 
 ```squirrel
 local payload = { "message" : "Hello, world!" };
 local params  = { "payload" : payload, 
                   "functionName" : "MyLambdaFunction" };
 lambda.invoke(params, function (result) {
-    local payload = http.jsondecode(result.body);
-    if ("Message" in payload) {
-        server.log("Invocation error: " + payload.Message);
-    } else if ("errorMessage" in payload) {
-        server.log("Runtime error: " + payload.errorMessage);
-    } else {
-        server.log("[SUCCESS]: " + payload.result);
-    }
+  local payload = http.jsondecode(result.body);
+  if ("Message" in payload) {
+    server.log("Invocation error: " + payload.Message);
+  } else if ("errorMessage" in payload) {
+    server.log("Runtime error: " + payload.errorMessage);
+  } else {
+    server.log("[SUCCESS]: " + payload.result);
+  }
 }.bindenv(this))
 ```
 
-## License
+## License ##
 
 The AWSLambda library is licensed under the [MIT License](LICENSE).
