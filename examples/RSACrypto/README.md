@@ -107,7 +107,7 @@ hwIDAQAB
 
 ## 6. Set up the Agent Code
 
-Here is some agent [code](agent.nut). Copy and paste it into the [Electric Imp IDE](https://ide.electricimp.com/login/): create a new model then paste the code into the agent code pane.
+Here is some agent [code](agent.nut). Copy and paste it into the [Electric Imp IDE](https://impcentral.electricimp.com/login/): create a new model then paste the code into the agent code pane.
 
 Set the example code configuration parameters with values retrieved on the previous steps:
 
