@@ -2,18 +2,18 @@
 
 This library can be used to invoke [Amazon Web Services (AWS) Lambda](http://docs.aws.amazon.com/lambda) functions from your agent code. It depends upon the [AWSRequestV4](https://github.com/electricimp/AWSRequestV4/) library, which **must** be included.
 
-**To add this library to your code, add**
+**To add this library to your model, add the following lines to the top of your agent code:**
 
 ```
 #require "AWSLambda.agent.lib.nut:1.0.0"
 #require "AWSRequestV4.class.nut:1.0.2"
 ```
 
-**to the top of your agent code**
+**Note** [AWSRequestV4](https://github.com/electricimp/AWSRequestV4/) **must** be included.
 
-## Class Methods ##
+## Class Usage ##
 
-### Constructor(*region, accessKeyID, secretAccessKey*) ###
+### Constructor: AWSLambda(*region, accessKeyId, secretAccessKey*) ###
 
 #### Parameters ####
 
@@ -37,6 +37,8 @@ const SECRET_ACCESS_KEY = "<YOUR_SECRET_ACCESS_KEY>";
 
 lambda <- AWSLambda(AWS_LAMBDA_REGION, ACCESS_KEY_ID, SECRET_ACCESS_KEY);
 ```
+
+## Class Methods ##
 
 ### invoke(*params[, callback]*) ###
 
